@@ -73,6 +73,16 @@ Untuk Android, pasang Android Studio, Android SDK Command-line Tools, Build-Tool
 
 ## Referensi dan pengumpulan
 
+### Hasil verifikasi sesi 11 November 2026
+
+- Flutter stable 3.47.9 terpasang; direktori SDK ditambahkan ke User PATH (buka terminal baru).
+- `flutter analyze`: **No issues found**. Contoh Dart memakai `stdout.writeln` agar sesuai lint tanpa mematikan aturan `avoid_print`.
+- `flutter test`: **7 tes lulus**, meliputi identitas, empat aksi, viewport 320px, dan skala teks 2x.
+- `flutter build web`: **berhasil**, termasuk Wasm dry run bawaan.
+- `dart run tool/halo_burhan.dart`: menghasilkan sapaan yang sesuai tutorial.
+- `flutter doctor`: Flutter dan Chrome siap. Android SDK belum terpasang, sehingga Android belum diuji. Toolchain desktop Windows juga belum terpasang; bukan target tutorial ini.
+- Repository publik: [JeudiAugusto/myportofolio_mobile](https://github.com/JeudiAugusto/myportofolio_mobile). Commit awal telah di-push; hasil verifikasi disimpan sebagai commit lanjutan.
+
 - [Tutorial 08: Basic Flutter](https://pbp.cs.ui.ac.id/tutorial/tutorial-8.html)
 - [Individual Assignment 7](https://pbp.cs.ui.ac.id/assignments/individual/tugas-7.html)
 - [Dokumentasi Flutter](https://docs.flutter.dev/)

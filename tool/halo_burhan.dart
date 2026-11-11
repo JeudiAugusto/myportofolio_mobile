@@ -1,3 +1,5 @@
+import 'dart:io';
+
 void main() {
-  print('Halo dari Dart, PBP Gasal 2026/2027!');
+  stdout.writeln('Halo dari Dart, PBP Gasal 2026/2027!');
 }
