@@ -4,6 +4,26 @@ import 'package:myportofolio_mobile/main.dart';
 import 'package:myportofolio_mobile/menu.dart';
 
 void main() {
+  testWidgets('setiap kartu aksi merender warna unik dan ikon yang sesuai', (
+    tester,
+  ) async {
+    await tester.pumpWidget(const MyApp());
+    final cards = tester.widgetList<ItemCard>(find.byType(ItemCard)).toList();
+    expect(cards.length, greaterThanOrEqualTo(3));
+    expect(cards.map((card) => card.item.color).toSet().length, cards.length);
+    for (final card in cards) {
+      final finder = find.byWidget(card);
+      final material = tester.widget<Material>(
+        find.descendant(of: finder, matching: find.byType(Material)),
+      );
+      expect(material.color, card.item.color);
+      expect(
+        find.descendant(of: finder, matching: find.byIcon(card.item.icon)),
+        findsOneWidget,
+      );
+    }
+  });
+
   testWidgets('identitas pribadi dan semua aksi tampil', (tester) async {
     await tester.pumpWidget(const MyApp());
     expect(find.text('2506656822'), findsOneWidget);

@@ -8,6 +8,24 @@ Portofolio Flutter Jeudi Augusto Asadullah, NPM **2506656822**, kelas **PBP C**,
 - Tugas 7: identitas pribadi, warna unik pada setiap aksi, menu Experience yang sesuai dengan backend, dan jawaban reflektif.
 - Tambahan: layout responsif, halaman dapat digulir, dukungan ukuran teks besar, label aksesibilitas tombol, dan pengujian interaksi.
 
+### Checklist Tugas 7
+
+Pemeriksaan ulang pada 16 November 2026 mengikuti [instruksi resmi Tugas 7](https://pbp.cs.ui.ac.id/assignments/individual/tugas-7.html). Implementasi utama sudah tersedia dari pengerjaan Tutorial 08; sesi ini memeriksa kesesuaiannya dan melengkapi pengujian warna serta ikon.
+
+| Persyaratan | Implementasi |
+| --- | --- |
+| Melanjutkan proyek Tutorial 08 di repo mobile terpisah | `myportofolio_mobile`, terpisah dari Django |
+| Bootstrap dan halaman menu terpisah | `lib/main.dart` dan `lib/menu.dart` |
+| Halaman utama stateless | `MyHomePage extends StatelessWidget` |
+| Tiga InfoCard dengan identitas pribadi | NPM 2506656822, Jeudi Augusto Asadullah, PBP C |
+| Minimal tiga aksi dengan ikon dan teks | Lihat Proyek, Tambah Proyek, Lihat Experience, Logout |
+| Warna latar berbeda untuk setiap aksi | Atribut `ItemHomepage.color`: biru, hijau, ungu, merah |
+| Pesan SnackBar sesuai tombol | `Kamu telah menekan tombol [Nama Tombol]!` |
+| Enam jawaban reflektif | Bagian `Pertanyaan Reflektif` > `Tugas 7` |
+| Analisis kode tanpa isu | Jalankan `flutter analyze` dari root repo mobile |
+
+Tes tambahan memeriksa warna yang benar-benar dirender pada `Material` setiap kartu, keunikan warna antaraksi, dan keberadaan ikon yang sesuai. Tes interaksi sebelumnya tetap memeriksa pesan keempat tombol serta layout pada layar sempit dan teks besar.
+
 Tombol Lihat Proyek, Tambah Proyek, Lihat Experience, dan Logout menampilkan pesan sesuai tutorial. Belum ada autentikasi, penyimpanan, navigasi halaman fitur, atau koneksi API; Logout belum mengakhiri sesi apa pun.
 
 ## Menjalankan
@@ -72,6 +90,22 @@ Untuk Android, pasang Android Studio, Android SDK Command-line Tools, Build-Tool
 **Keterbatasan:** akses awal sumber mendapat tantangan sesi/429, kemudian berhasil melalui cookie HTTP normal. Ringkasan pencarian memiliki jadwal lama, sehingga requirement mengikuti halaman tutorial aktual. Tes otomatis tidak menggantikan penilaian visual di seluruh perangkat. Jawaban reflektif perlu dipahami dan ditinjau pengguna; AI tidak dapat membuktikan pemahaman pribadi atau menjamin nilai tugas. Status push dan pengumpulan SCELE harus dibedakan dari implementasi lokal.
 
 ## Referensi dan pengumpulan
+
+### Hasil verifikasi sesi 16 November 2026
+
+- `flutter analyze`: **No issues found**.
+- `flutter test`: **8 tes lulus**, termasuk tes tambahan warna dan ikon kartu.
+- `flutter build web`: **berhasil**, termasuk Wasm dry run bawaan.
+- `git diff --check`: tanpa masalah whitespace.
+- Perubahan sesi ini disimpan secara lokal; push dan pengumpulan tautan commit di SCELE dilakukan pengguna. Pengujian browser interaktif dan build Android/iOS tidak dilakukan pada sesi ini.
+
+### Log bantuan AI — penyelesaian Tugas 7, 16 November 2026
+
+**Prompt pengguna:** `https://pbp.cs.ui.ac.id/assignments/individual/tugas-7.html selesain ya. yg push saya aja`.
+
+**Tindakan Codex (OpenAI):** membaca instruksi resmi, menemukan repo mobile Tutorial 08 yang sudah ada, mencocokkan kode dan enam jawaban reflektif dengan checklist, menambahkan tes warna/ikon kartu, dan memperbarui dokumentasi. Kode fitur utama tidak dibuat ulang karena sudah memenuhi kebutuhan tugas. Push diserahkan kepada pengguna sesuai permintaan.
+
+**Keterbatasan dan koreksi:** akses tanpa cookie sempat mengalami redirect dan HTTP 429; halaman aktual berhasil dibaca menggunakan cookie sesi HTTP. Hasil pencarian memuat jadwal lama, sehingga tanggal pengumpulan mengikuti halaman tugas aktual. Pemeriksaan otomatis tidak membuktikan review pribadi pengguna, pengumpulan Tutorial 08 di SCELE, atau keberhasilan pada perangkat Android/iOS. Tidak ada klaim perbaikan manual oleh pengguna yang belum dikonfirmasi.
 
 ### Hasil verifikasi sesi 11 November 2026
 
