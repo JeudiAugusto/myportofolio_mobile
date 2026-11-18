@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:myportofolio_mobile/widgets/left_drawer.dart';
+import 'package:myportofolio_mobile/widgets/project_card.dart';
 
-/// Static menu; authentication and API navigation follow in later tutorials.
+/// Portfolio home with navigation to the project form.
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
@@ -22,6 +24,7 @@ class MyHomePage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.primary,
       foregroundColor: Theme.of(context).colorScheme.onPrimary,
     ),
+    drawer: const LeftDrawer(),
     body: SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
@@ -94,7 +97,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     const Text(
-                      'Tutorial 08 · Basic Flutter',
+                      'Tutorial 09 · Navigation & Forms',
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -135,49 +138,4 @@ class ItemHomepage {
   final String name;
   final IconData icon;
   final Color color;
-}
-
-class ItemCard extends StatelessWidget {
-  const ItemCard(this.item, {super.key});
-  final ItemHomepage item;
-
-  @override
-  Widget build(BuildContext context) => Semantics(
-    button: true,
-    label: item.name,
-    excludeSemantics: true,
-    child: Material(
-      color: item.color,
-      borderRadius: BorderRadius.circular(16),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: () => ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text('Kamu telah menekan tombol ${item.name}!'),
-              behavior: SnackBarBehavior.floating,
-            ),
-          ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(item.icon, color: Colors.white, size: 32),
-              const SizedBox(height: 12),
-              Text(
-                item.name,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
 }

@@ -4,7 +4,7 @@ Portofolio Flutter Jeudi Augusto Asadullah, NPM **2506656822**, kelas **PBP C**,
 
 ## Progres
 
-- Tutorial 08: bootstrap `lib/main.dart`, halaman stateless `lib/menu.dart`, model `ItemHomepage`, komponen `InfoCard` dan `ItemCard`, tema Material 3, serta SnackBar.
+- Tutorial 08: bootstrap `lib/main.dart`, halaman stateless `lib/screens/menu.dart`, model `ItemHomepage`, komponen `InfoCard` dan `ItemCard`, tema Material 3, serta SnackBar.
 - Tugas 7: identitas pribadi, warna unik pada setiap aksi, menu Experience yang sesuai dengan backend, dan jawaban reflektif.
 - Tambahan: layout responsif, halaman dapat digulir, dukungan ukuran teks besar, label aksesibilitas tombol, dan pengujian interaksi.
 
@@ -15,7 +15,7 @@ Pemeriksaan ulang pada 16 November 2026 mengikuti [instruksi resmi Tugas 7](http
 | Persyaratan | Implementasi |
 | --- | --- |
 | Melanjutkan proyek Tutorial 08 di repo mobile terpisah | `myportofolio_mobile`, terpisah dari Django |
-| Bootstrap dan halaman menu terpisah | `lib/main.dart` dan `lib/menu.dart` |
+| Bootstrap dan halaman menu terpisah | `lib/main.dart` dan `lib/screens/menu.dart` |
 | Halaman utama stateless | `MyHomePage extends StatelessWidget` |
 | Tiga InfoCard dengan identitas pribadi | NPM 2506656822, Jeudi Augusto Asadullah, PBP C |
 | Minimal tiga aksi dengan ikon dan teks | Lihat Proyek, Tambah Proyek, Lihat Experience, Logout |
@@ -26,7 +26,7 @@ Pemeriksaan ulang pada 16 November 2026 mengikuti [instruksi resmi Tugas 7](http
 
 Tes tambahan memeriksa warna yang benar-benar dirender pada `Material` setiap kartu, keunikan warna antaraksi, dan keberadaan ikon yang sesuai. Tes interaksi sebelumnya tetap memeriksa pesan keempat tombol serta layout pada layar sempit dan teks besar.
 
-Tombol Lihat Proyek, Tambah Proyek, Lihat Experience, dan Logout menampilkan pesan sesuai tutorial. Belum ada autentikasi, penyimpanan, navigasi halaman fitur, atau koneksi API; Logout belum mengakhiri sesi apa pun.
+Tombol Lihat Proyek, Tambah Proyek, Lihat Experience, dan Logout menampilkan pesan sesuai tutorial. Tambah Proyek kini membuka form melalui Navigator.push. Belum ada autentikasi, penyimpanan, atau koneksi API; Logout belum mengakhiri sesi apa pun.
 
 ## Menjalankan
 
@@ -55,7 +55,11 @@ Untuk Android, pasang Android Studio, Android SDK Command-line Tools, Build-Tool
 | Berkas | Tujuan |
 | --- | --- |
 | `lib/main.dart` | Entry point dan tema MaterialApp |
-| `lib/menu.dart` | MyHomePage, InfoCard, ItemHomepage, ItemCard |
+| `lib/screens/menu.dart` | MyHomePage, InfoCard, ItemHomepage |
+| `lib/screens/project_form.dart` | Form proyek dan dialog hasil input |
+| `lib/widgets/project_card.dart` | ItemCard dengan navigasi ke form |
+| `lib/widgets/left_drawer.dart` | Navigasi drawer Home dan Add Project |
+| `test/project_form_test.dart` | Navigasi, validasi, reset, dan layout form |
 | `test/widget_test.dart` | Identitas, seluruh SnackBar, layar sempit dan teks besar |
 | `tool/halo_burhan.dart` | Percobaan Dart mandiri sesuai tutorial |
 | `android/`, `ios/`, `web/` | Runner platform dari Flutter |
@@ -122,3 +126,51 @@ Untuk Android, pasang Android Studio, Android SDK Command-line Tools, Build-Tool
 - [Dokumentasi Flutter](https://docs.flutter.dev/)
 
 Tutorial meminta repositori GitHub publik terpisah dan **tautan commit**, bukan hanya tautan repo, untuk slot SCELE. Tenggat pada halaman aktual: Tutorial 08 **11 November 2026 23.59 WIB**, Tugas 7 **16 November 2026 23.59 WIB**. Pengumpulan SCELE belum dilakukan oleh AI.
+
+
+## Tutorial 09 - Navigasi, Layout, Form, dan Input
+
+Implementasi mengikuti [Tutorial 09 resmi](https://pbp.cs.ui.ac.id/tutorial/tutorial-9.html), diakses 18 November 2026.
+
+- `lib/screens/menu.dart`: halaman utama dengan drawer; tombol Tambah Proyek memakai `Navigator.push` sehingga route sebelumnya tetap tersedia untuk Back.
+- `lib/screens/project_form.dart`: StatefulWidget dengan `Form`, `GlobalKey<FormState>`, dan input nama, deskripsi, kategori, teknologi, serta tautan proyek. Nama dan deskripsi wajib diisi (spasi saja ditolak); teknologi dan tautan opsional.
+- `lib/widgets/left_drawer.dart`: header aplikasi dan navigasi Home/Add Project memakai `pushReplacement`. Drawer ditutup sebelum route halaman diganti.
+- `lib/widgets/project_card.dart`: ItemCard dipisahkan dari halaman menu; semua impor diperbarui.
+- Save memvalidasi dan menampilkan kelima nilai dalam AlertDialog yang dapat digulir. OK menutup dialog menggunakan `Navigator.pop`, mereset field serta state, dan mengembalikan kategori ke Web Development. Menutup dialog tanpa OK mempertahankan input.
+- Dependensi dan impor `material_ui` ditambahkan sesuai catatan tutorial; SDK lokal Flutter 3.47.9.
+- Tidak ada penyimpanan database pada tahap tutorial ini. Form Experience untuk Individual Assignment 8 merupakan pekerjaan terpisah.
+
+### Pemeriksaan manual
+
+1. Jalankan `flutter run -d chrome`; tekan Tambah Proyek dan gunakan Back untuk kembali.
+2. Buka drawer, pilih Add Project, lalu coba Save dengan nama/deskripsi kosong.
+3. Isi seluruh field, ganti kategori, lalu Save; periksa isi dialog.
+4. Tekan OK; pastikan semua teks kosong dan kategori kembali ke Web Development.
+5. Buka drawer dari form dan pilih Home.
+
+### Deklarasi bantuan AI - 18 November 2026
+
+**Alat:** Codex (OpenAI).
+
+**Prompt pengguna:** "https://pbp.cs.ui.ac.id/ selesaikan tutorial 9. commitnya saya sendiri aja. tapi kasih saya commandnya biar saya tinggal commit terus kumpulin".
+
+**Kontribusi:** membaca halaman tutorial aktual, menambahkan drawer dan form proyek, merapikan struktur file dan impor, menambahkan material_ui, menulis tes navigasi/validasi/reset/layout, dan memperbarui README. Implementasi dibantu AI secara langsung. Pengguna tetap perlu meninjau dan memahami kode; tidak ada klaim review manual yang belum dilakukan.
+
+**Pengumpulan:** halaman aktual menetapkan tenggat Tutorial 09 pada **18 November 2026 pukul 23.59 WIB**. Push ke repositori GitHub publik sebelum tenggat dan kumpulkan **tautan commit** ke slot Tutorial 09 di SCELE. Commit, push, dan submisi dilakukan pengguna.
+
+```powershell
+git add lib test pubspec.yaml pubspec.lock README.md
+git commit -m "Complete Tutorial 09: navigation and project form"
+git push origin main
+$commit = git rev-parse HEAD
+"https://github.com/JeudiAugusto/myportofolio_mobile/commit/$commit"
+```
+
+### Hasil verifikasi Tutorial 09
+
+- `flutter analyze`: No issues found.
+- `flutter test`: 12 tes lulus, termasuk navigasi push/pushReplacement, validasi, isi dialog, reset kategori dan input, serta layar 320px dengan skala teks 2x.
+- `flutter build web`: berhasil setelah perbaikan akhir, termasuk Wasm dry run.
+- `dart format --output=none --set-exit-if-changed lib test`: tidak ada perubahan format.
+- `git diff --check`: tidak ada masalah whitespace.
+- Browser interaktif dan build Android/iOS belum diuji. Commit, push, serta submisi SCELE belum dilakukan.
