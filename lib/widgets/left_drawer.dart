@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
+import 'package:myportofolio_mobile/screens/experience_form.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -50,6 +51,11 @@ class LeftDrawer extends StatelessWidget {
           leading: const Icon(Icons.add_circle_outline),
           title: const Text('Add Project'),
           onTap: () => _navigate(context, const ProjectFormPage()),
+        ),
+        ListTile(
+          leading: const Icon(Icons.work_history_outlined),
+          title: const Text('Add Experience'),
+          onTap: () => _navigate(context, const ExperienceFormPage()),
         ),
       ],
     ),
